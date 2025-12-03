@@ -177,6 +177,13 @@ pipeline {
                         sh '''
                             cd ansible
                             
+                            # Test SSH connection first
+                            echo "Testing SSH connection to app server..."
+                            ssh -o StrictHostKeyChecking=no -o ConnectTimeout=10 -i "$SSH_KEY" ubuntu@${EC2_HOST} "echo 'SSH connection successful'" || {
+                                echo "ERROR: Cannot connect to app server"
+                                exit 1
+                            }
+                            
                             # Ensure Ansible is installed
                             which ansible-playbook || {
                                 echo "Installing Ansible..."
