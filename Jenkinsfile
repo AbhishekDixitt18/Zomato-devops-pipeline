@@ -229,28 +229,12 @@ pipeline {
     post {
         success {
             echo '🎉 Pipeline completed successfully!'
-            script {
-                // TODO: Add Slack/email notifications
-                /*
-                slackSend(
-                    color: 'good',
-                    message: "✅ Build #${BUILD_NUMBER} succeeded\nCommit: ${GIT_COMMIT_MSG}\nAuthor: ${GIT_AUTHOR}"
-                )
-                */
-            }
+            // TODO: Add Slack/email notifications when configured
         }
         
         failure {
             echo '❌ Pipeline failed!'
-            script {
-                // TODO: Add Slack/email notifications
-                /*
-                slackSend(
-                    color: 'danger',
-                    message: "❌ Build #${BUILD_NUMBER} failed\nCommit: ${GIT_COMMIT_MSG}\nAuthor: ${GIT_AUTHOR}"
-                )
-                */
-            }
+            // TODO: Add Slack/email notifications when configured
         }
         
         always {
