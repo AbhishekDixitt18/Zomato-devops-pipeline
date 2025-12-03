@@ -173,7 +173,7 @@ pipeline {
                 
                 script {
                     // Use SSH credentials to run Ansible
-                    sshagent([SSH_CREDENTIALS_ID]) {
+                    withCredentials([sshUserPrivateKey(credentialsId: SSH_CREDENTIALS_ID, keyFileVariable: 'SSH_KEY')]) {
                         sh '''
                             cd ansible
                             
@@ -183,10 +183,11 @@ pipeline {
                                 pip3 install ansible
                             }
                             
-                            # Run deployment playbook
+                            # Run deployment playbook with SSH key
                             ansible-playbook \
                                 -i inventory \
                                 deploy.yml \
+                                --private-key="$SSH_KEY" \
                                 -v
                         '''
                     }
