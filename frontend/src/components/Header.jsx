@@ -30,6 +30,21 @@ export default function Header({ cartCount = 0 }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (showLocationDropdown && !event.target.closest('.location-selector')) {
+        setShowLocationDropdown(false);
+      }
+      if (showDropdown && !event.target.closest('.user-menu')) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [showLocationDropdown, showDropdown]);
+
   const handleLogout = () => {
     logout();
     setShowDropdown(false);
@@ -53,7 +68,6 @@ export default function Header({ cartCount = 0 }) {
           <div 
             className="location-selector" 
             onClick={() => setShowLocationDropdown(!showLocationDropdown)}
-            style={{ cursor: 'pointer', position: 'relative' }}
           >
             <span className="location-icon">📍</span>
             <div className="location-text">
@@ -61,7 +75,7 @@ export default function Header({ cartCount = 0 }) {
               <span className="location-value">{selectedLocation} ▾</span>
             </div>
             {showLocationDropdown && (
-              <div className="user-dropdown" style={{ left: 0, top: '100%', minWidth: '200px' }}>
+              <div className="user-dropdown location-dropdown">
                 {locations.map((location) => (
                   <div
                     key={location}

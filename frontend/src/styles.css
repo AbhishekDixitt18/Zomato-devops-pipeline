@@ -246,6 +246,8 @@ header a:hover::after {
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s;
+  position: relative;
+  user-select: none;
 }
 
 .location-selector:hover {
@@ -328,6 +330,14 @@ header a:hover::after {
   padding: 0.5rem;
   z-index: 1000;
   animation: fadeInUp 0.2s ease;
+}
+
+.location-selector .user-dropdown {
+  left: 0;
+  right: auto;
+  min-width: 220px;
+  max-height: 400px;
+  overflow-y: auto;
 }
 
 .dropdown-item {
