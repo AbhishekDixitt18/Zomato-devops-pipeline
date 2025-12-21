@@ -28,3 +28,9 @@ ansible/roles/*/files/*.pem
 jenkins/README.md
 ansible/README.md
 infra/terraform/README.md
+
+# Setup and credentials files
+SETUP-GUIDE.md
+JENKINS-CREDENTIALS.md
+jenkins/QUICKSTART.md
+jenkins/SETUP-EC2.md
