@@ -16,7 +16,7 @@
 
 ## 🎯 Project Overview
 
-FoodHub is a **full-stack food delivery application** (similar to Zomato/Swiggy) integrated with a **real-world DevOps CI/CD pipeline**.
+FoodHub is a **full-stack food delivery application** integrated with a **real-world DevOps CI/CD pipeline**.
 
 This project demonstrates how modern applications are:
 
